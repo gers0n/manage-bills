@@ -2,19 +2,11 @@ var socket;
 
 document.onreadystatechange = function(newState){
     socket = io ? io() : {on:function(event, callback){}};
+    function getAllBuys(){
+        // $.get('/api/')
+    };
     
-    $('form').submit(function(){
-        var data = {
-          product: $('#product').val(),
-          price: $('#price').val()
-        }
-        socket.emit('new product', data);
-        $('#product').val('');
-        $('#price').val('');
-        return false;
-    });
-
-    socket.on('new product', function(data){
+    socket.on('new buy item', function(data){
         console.log(data);
         return data;
         // var name = $('<span class="product-name">').text(data.product),
