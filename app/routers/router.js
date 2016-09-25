@@ -1,6 +1,6 @@
 const express = require('express');
-const Bear = require('../models/bear.js');
-const bearHandler = require('../handlers/bearsHandler');
+const Cuenta = require('../models/cuenta');
+const cuentaHandler = require('../handlers/cuentasHandler');
 
 const routes = express.Router()
 	.use( function middleware(req, res, next) {
@@ -15,13 +15,13 @@ const routes = express.Router()
 		res.status(201).json({message: "hooray, welcome to ourt post api"});
 	}); // /api/ post route
 
-	routes.route('/bears/:Id')
-		.get(bearHandler.getBearById)
-		.patch(bearHandler.updateBearById)
-		.delete(bearHandler.removeBearById);
+	routes.route('/cuenta/:Id')
+		.get(cuentaHandler.getCuentaById)
+		.patch(cuentaHandler.updateCuentaById)
+		.delete(cuentaHandler.removeCuentaById);
 
-	routes.route('/bears')
-		.get(bearHandler.getAllBears)
-		.post(bearHandler.createBear);
+	routes.route('/cuentas')
+		.get(cuentaHandler.getAllCuentas)
+		.post(cuentaHandler.createCuenta);
 
 exports.routes = routes;
