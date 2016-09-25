@@ -16,6 +16,7 @@
           .separator {margin: 10px;}
         </style>
         <link rel="stylesheet" type="text/css" href="/views/css/bootstrap.min.css">
+        <link rel="stylesheet" type="text/css" href="/views/css/custom.css">
         <script type="text/javascript" src="/views/js/jquery-3.1.1.min.js"></script>
     </head>
     <body>
@@ -35,9 +36,9 @@
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
               <ul class="nav navbar-nav">
-                <li class="active"><a href="/views/index.html">Index <span class="sr-only">(current)</span></a></li>
+                <li><a href="/views/index.html">Index</a></li>
                 <li><a href="/views/compra.html">Compra</a></li>
-                <li><a href="/views/facturacion.html">Facturacion</a></li>
+                <li class="active"><a href="/views/facturacion.html">Facturacion <span class="sr-only">(current)</span></a></li>
                 <li><a href="/views/despacho.html">Despacho</a></li>
                 <li><a href="/views/listaUsuarios.html">Usuarios</a></li>
                 <li><a href="/views/login.html">Iniciar Seccion</a></li>
@@ -78,32 +79,62 @@
         </nav>
         <div class="container">
             <div class="col-sm-12">
-                <div class="form-inline form-group">
-                    <div class="form-group row">
-                      <label for="example-text-input" class="col-xs-2 col-form-label">Text</label>
-                      <div class="col-xs-10">
-                        <input class="form-control" type="text" value="Artisanal kale" id="example-text-input">
-                      </div>
+                <div class="col-sm-12" id="form-products">
+                    <h3 class="title row">
+                        Detalles de venta
+                    </h3>
+                    <div class="form-inline form-group row">
+                        <div class="form-group  col-sm-4" >
+                            <label for="example-text-input" class="col-form-label">Nombre del cliente</label>
+                            <input class="form-control" type="text" value="" id="cliente">
+                        </div>
+                        <div class="form-group col-sm-4">
+                            <label for="example-email-input" class=" col-form-label">Tipo de factura</label>
+                            <select class="form-control" id="amountin">
+                                <option value="unidades">A credito</option>
+                                <option value="libras ">Al Contado</option>
+                            </select>
+                        </div>
+                        <div class="form-group  col-sm-4 pull-right">
+                            <label for="example-search-input" class="col-form-label">fecha</label>
+                            <input class="form-control" type="date" value="2016-09-25" id="fecha" disabled="">
+                        </div>
                     </div>
-                    <div class="form-group row">
-                      <label for="example-search-input" class="col-xs-2 col-form-label">Search</label>
-                      <div class="col-xs-10">
-                        <input class="form-control" type="search" value="How do I shoot web" id="example-search-input">
-                      </div>
+                    <h3 class="title row">
+                        Detalles del Producto
+                    </h3>
+                    <div class="row form-inline form-group">
+                        
+                        <div class="form-group col-sm-4">
+                            <label for="example-email-input" class=" col-form-label">Product</label>
+                            <select class="form-control" id="amountin">
+                                <option value="unidades">Clavos</option>
+                                <option value="libras ">Gabetero</option>
+                            </select>
+                            <i class="glyphicon glyphicon-search"></i>
+                        </div>
+                        <div class="form-group col-xs-12 col-md-4">
+                            <label for="example-url-input" class="col-form-label">Precio</label>
+                            <input class="form-control" type="number" value="0" id="example-url-input">
+                        </div>
+                        <div class="form-group col-sm-4">
+                            <label for="example-email-input" class=" col-form-label">Cantidad</label>
+                            <input class="form-control" type="number" value="1" id="example-email-input" style="width: 105px;">
+                            <select class="form-control" id="amountin">
+                                <option value="unidades">Unidades</option>
+                                <option value="libras ">Libras</option>
+                            </select>
+                        </div>                        
                     </div>
-                </div>
-                <div class="form-inline form-group">
-                    <div class="form-group row">
-                      <label for="example-email-input" class="col-xs-2 col-form-label">Email</label>
-                      <div class="col-xs-10">
-                        <input class="form-control" type="email" value="bootstrap@example.com" id="example-email-input">
-                      </div>
-                    </div>
-                    <div class="form-group row">
-                      <label for="example-url-input" class="col-xs-2 col-form-label">URL</label>
-                      <div class="col-xs-10">
-                        <input class="form-control" type="url" value="http://getbootstrap.com" id="example-url-input">
-                      </div>
+                    <div class="row" style="margin:10px;">
+                        <div class="form-group col-sm-12">
+                        <div class="col-sm-2 pull-right">
+                            <button class="btn btn-primary pull-right">Agregar</button>
+                        </div>
+                        <div class="col-sm-2 pull-right">
+                            <button class="btn btn-default pull-right">Libpiar</button>
+                        </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -112,38 +143,88 @@
                     <table class="table table-bordered">
                       <thead class="thead-default">
                         <tr>
-                          <th>#</th>
-                          <th>First Name</th>
-                          <th>Last Name</th>
-                          <th>Username</th>
+                          <th>Cogido</th>
+                          <th>Nombre</th>
+                          <th>Precio</th>
+                          <th>Cantidad</th>
                         </tr>
                       </thead>
                       <tbody>
                         <tr>
-                          <th scope="row">1</th>
+                          <th scope="row">15645445</th>
                           <td>Mark</td>
-                          <td>Otto</td>
-                          <td>@mdo</td>
+                          <td>200</td>
+                          <td>10 libras</td>
                         </tr>
                         <tr>
-                          <th scope="row">2</th>
-                          <td>Jacob</td>
+                          <th scope="row">15645445</th>
                           <td>Thornton</td>
-                          <td>@fat</td>
+                          <td>200</td>
+                          <td>10 libras</td>
                         </tr>
                         <tr>
-                          <th scope="row">3</th>
-                          <td>Larry</td>
+                          <th scope="row">15645445</th>
                           <td>the Bird</td>
-                          <td>@twitter</td>
+                          <td>200</td>
+                          <td>10 libras</td>
                         </tr>
                       </tbody>
                     </table>
                 </div>
             </div>
-
+            <div class="row" style="margin:10px;">
+                <div class="form-group col-sm-12">
+                    <div class="col-sm-2 pull-right">
+                        <button class="btn btn-success pull-right">Guardar</button>
+                    </div>
+                </div>
+            </div>
         </div>
-
+        <div class="col-sm-12">
+            <h2 class="title">Lista de Pendientes</h2>
+            <div class="table-responsive">
+                <table class="table forum table-striped">
+                    <thead>
+                        <tr>
+                            <th class="cell-stat"></th>
+                            <th class="cell-stat">Nombre del Cliente /Tipo de factura</th>
+                            <th class="cell-stat">Cantidad de articulo</th>
+                            <th class="cell-stat text-center hidden-xs hidden-sm">Precio Neto</th>
+                            <th class="cell-stat text-center hidden-xs hidden-sm">ITBIS</th>
+                            <th class="cell-stat text-center hidden-xs hidden-sm">Descuento</th>
+                            <th class="cell-stat text-center hidden-xs hidden-sm">Total</th>
+                            <th class="cell-stat text-center hidden-xs hidden-sm">Vendido</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="text-center"><i class="fa fa-question fa-2x text-primary"></i></td>
+                            <td>
+                                <h4><a href="#">Juan</a><br><small>A credito</small></h4>
+                            </td>
+                            <td class="text-center hidden-xs hidden-sm"><a href="#">10</a></td>
+                            <td class="text-center hidden-xs hidden-sm"><a href="#">1,000</a></td>
+                            <td class="text-center hidden-xs hidden-sm"><a href="#">10%</a></td>
+                            <td class="text-center hidden-xs hidden-sm"><a href="#">0 %</a></td>
+                            <td class="text-center hidden-xs hidden-sm"><a href="#">1,100</a></td>
+                            <td class="hidden-xs hidden-sm">por <a href="#">Jose Augusto</a><br><small><i class="fa fa-clock-o"></i> hace 3 minutos</small></td>
+                        </tr>
+                        <tr>
+                            <td class="text-center"><i class="fa fa-question fa-2x text-primary"></i></td>
+                            <td>
+                                <h4><a href="#">Maria</a><br><small>Al contado</small></h4>
+                            </td>
+                            <td class="text-center hidden-xs hidden-sm"><a href="#">10</a></td>
+                            <td class="text-center hidden-xs hidden-sm"><a href="#">2,000</a></td>
+                            <td class="text-center hidden-xs hidden-sm"><a href="#">10%</a></td>
+                            <td class="text-center hidden-xs hidden-sm"><a href="#">0 %</a></td>
+                            <td class="text-center hidden-xs hidden-sm"><a href="#">2,200</a></td>
+                            <td class="hidden-xs hidden-sm">por <a href="#">Jose Augusto</a><br><small><i class="fa fa-clock-o"></i> hace  minutos</small></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
         
         
         <script type="text/javascript" src="/socket.io/socket.io.js"></script>
