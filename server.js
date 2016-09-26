@@ -64,7 +64,7 @@ var Server = function(){
         fs.createReadStream(__dirname+'/views/404.html').pipe(res);
     };
 
-    self.app.get('/views/:filename', manageFrontendRequestW);
+    self.app.get('/views/:filename', manageFrontendRequest);
     self.app.get('/views/js/:filename', manageFrontendRequest);
     self.app.get('/views/css/:filename', manageFrontendRequest);
 
