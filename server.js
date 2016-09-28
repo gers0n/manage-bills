@@ -5,6 +5,7 @@ var Server = function(){
     const fs = require('fs');
     const Cuenta = require('./app/models/cuenta');
     const router = require('./app/routers/router');
+    const db = require('./db');
 
     self.express = require('express');
     self.app   = self.express();
@@ -14,14 +15,6 @@ var Server = function(){
     
 
 
-    // BASE SETUP SECTION
-    self.mongoose = require('mongoose');
-    self.mongoose.connect('mongodb://localhost:27017/BillsMgmDB');
-    // mongoose.connect('mongodb://node:node@novus.modulusmongo.net:27017/Iganiq8o');
-    // mongoose.connect('mongodb://localhost:27017/local');
-    // mongoose.connect('mongodb://localhost:27017/tutorialExpressDB');
-    
-    
     // const Bear = require('./app/models/bear');
 
     // app.get('/', function(req, res) {
