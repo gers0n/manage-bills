@@ -1,12 +1,24 @@
 'use strict'
 
 module.exports.fromRequest = (producto) => {
-	return producto.CodigoProducto && producto.suplidor ? {
-		Nombre: producto.Nombre,
-		CodigoProducto: producto.CodigoProducto,
-		Precio: producto.Precio,
-		Cantidad: producto.Cantidad,
-		Medida: producto.AmountIna,
-		Suplidor: product.suplidor.Id
-	} : {};
+	return {
+		Nombre: producto.Nombre || "",
+		CodigoProducto: producto.CodigoProducto || "",
+		Precio: producto.Precio || 0,
+		Cantidad: producto.Cantidad || 0,
+		Medida: producto.Medida || "",
+		Suplidor: producto.Suplidor || ""
+	};
+};
+
+
+module.exports.toResponse = (producto) => {
+	return {
+		Nombre: producto.Nombre || "",
+		CodigoProducto: producto.CodigoProducto || "",
+		Precio: producto.Precio || 0,
+		Cantidad: producto.Cantidad || 0,
+		Medida: producto.Medida || "",
+		Suplidor: producto.Suplidor || ""
+	};
 };

@@ -1,7 +1,7 @@
 'use strict'
 
 const Compra = require('../models/compra');
-const mapper = require('./mappers/compraMapper');
+const mapper = require('../mappers/compraMapper');
 
 exports.createCompra = (req, res) => { /*create new compra*/
 	var compra = new Compra(mapper.fromRequest(req.body));

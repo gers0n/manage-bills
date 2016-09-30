@@ -2,7 +2,7 @@ const express = require('express');
 const Cuenta = require('../models/cuenta');
 const Producto = require('../models/producto');
 const Suplidor = require('../models/suplidor');
-const Suplidor = require('../models/compraa');
+const Compra = require('../models/compra');
 
 const productosHandler = require('../handlers/productosHandler');
 const comprasHandler = require('../handlers/comprasHandler');
@@ -49,7 +49,7 @@ const routes = express.Router()
 	routes.route('/compra/:Id')
 		.get(comprasHandler.getCompraById)
 		.patch(comprasHandler.updateCompraById)
-		.delete(comprasHandler.removeCompraById);
+		.delete(comprasHandler.removeCompraById)
 
 	routes.route('/compras')
 		.get(comprasHandler.getAllCompras)

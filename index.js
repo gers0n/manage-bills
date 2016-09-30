@@ -1,6 +1,8 @@
 'use strict'
-var server = require('./server');
-// var windowMgr = require('./win');
+
+const Server = require('./app/server');
+var server = new Server();
+// var windowMgr = require('./app/UI/win');
 
 server.initServer();
 // windowMgr.init();

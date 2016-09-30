@@ -1,7 +1,7 @@
 'use strict'
 
 const Cuenta = require('../models/cuenta');
-const mapper = require('./mappers/cuentaMapper');
+const mapper = require('../mappers/cuentaMapper');
 
 exports.createCuenta = (req, res) => { /*create new cuenta*/
 	Cuenta.find({Nombre: req.body.NombreUsuario}, function(err, cuenta){
@@ -12,7 +12,7 @@ exports.createCuenta = (req, res) => { /*create new cuenta*/
 			return res.status(401).json( {'error':'El Cuenta ya existe.'});
 		}
 
-		let cuenta = new Cuenta(mapper.fromRequest(req.body));
+		var cuenta = new Cuenta(mapper.fromRequest(req.body));
 		cuenta.save( (err) => {
 			if (err) 
 				return res.status(401).json({'error':'error: '+err});

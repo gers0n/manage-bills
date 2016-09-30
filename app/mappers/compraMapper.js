@@ -1,6 +1,5 @@
 'use strict'
-// const suplidorMapper = require("./suplidorMapper");
-// const productoMapper = require("./productoMapper");
+
 const getAllProductosIds = function(productos) {
 	var IdProductos = [];
 	for(var i in productos){

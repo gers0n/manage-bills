@@ -1,0 +1,1 @@
+{"_id":{"$oid":"57ed1c46bd818f491f3216ae"},"Nombre":"Clavos","Cantidad":10.0,"Precio":1000.0,"Medida":"Libras","SuplidorId":{"$oid":"57ed1edabd818f491f3216af"}}

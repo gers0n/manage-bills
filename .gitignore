@@ -1,4 +1,5 @@
 node_modules
+electron-app
 *.zip
 *.rar
-electron-app
+*.log

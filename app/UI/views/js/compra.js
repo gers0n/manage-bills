@@ -18,9 +18,10 @@ var compraAPI = {
 function CompraModel(options){
     var self = this;
     options = options || {};
-    self.Vendedor = ko.observable(options.Vendedor || {});
-    self.ProductosId = ko.observableArray(options.ProductosId || [])
+    self.IdSuplidor = ko.observable(options.Suplidor || {});
+    self.IdProductos = ko.observableArray(options.IdProductos || [])
 };
+
 function ProductoModel(options){
     var self = this;
     options = options || {};
@@ -28,15 +29,17 @@ function ProductoModel(options){
     self.CodigoProducto = options.CodigoProducto || '';
     self.Precio = parseInt(options.Precio || 1);
     self.Cantidad = parseInt(options.Cantidad || 1);
-    self.AmountIn = "Unidades";
+    self.Medida = "Unidades";
     self.AmountInEnum = ["Unidades", "Libras"];
+    self.Suplidor = options.Suplidor || {};
 
 };
-function VendedorModel(options){
+
+function SuplidorModel(options){
     var self = this;
     options = options || {};
+    self.Id = undefined;
     self.Nombre = options.Nombre || '';
-    self.Apellido = options.Apellido || '';
     self.NumeroTelefonico = options.NumeroTelefonico || "";
     self.Identificacion = options.Identificacion || "";
 };
@@ -51,19 +54,17 @@ function CompraViewModel(){
         self.productoEnBlanco.constructor();
         $("#form-products > div > .form-group.form-inline:nth-child(2) input").val("");
     };
-    self.vendedorEnBlanco = new VendedorModel();
+    self.suplidorEnBlanco = new SuplidorModel();
     self.productoEnBlanco = new ProductoModel();
-    self.compraEnBlanco = new CompraModel({Vendedor:self.vendedorEnBlanco, ProductosId: []});
+    self.compraEnBlanco = new CompraModel({Suplidor: self.suplidorEnBlanco, IdProductos: []});
 
     self.producto = ko.observable(Object(self.productoEnBlanco));
+    self.suplidor = ko.observable(Object(self.suplidorEnBlanco));
     self.compra = ko.observable(Object(self.compraEnBlanco));
+    self.producto().Suplidor = self.suplidor();
 
     self.guardarCompra = function(){
-        
-        compraAPI.crear(ko.toJS(self.compra), function(err, data){
-            console.log(data);
-            debugger;
-        });
+        socket.emit("agregar suplidor", ko.toJS(compraViewModel.compra().IdSuplidor));
         self.limpiarDetallesCompra();
     };
 
@@ -91,10 +92,11 @@ function CompraViewModel(){
     self.agregarProducto = function(){
         self.producto().Precio = parseInt(self.producto().Precio);
         self.producto().Cantidad = parseInt(self.producto().Cantidad);
-
-        self.compra().ProductosId.push(self.producto());
-        self.agregarProductoAlUI(self.producto());
+        socket.emit('agregar producto', ko.toJS(self.producto));
+        // self.compra().IdProductos.push(self.producto());
+        // self.agregarProductoAlUI(self.producto());
         self.limpiarDetallesProducto();
+        debugger;
     };
 
     // $("#agregar").on('click', self.agregarProducto);
@@ -119,6 +121,22 @@ document.onreadystatechange = function(newState){
         // li.append(price);
         // $('#messages').append(li);
     });
+    socket.on('agregar producto', function(data){
+        console.log(data);
+        compraViewModel.compra().IdProductos.push(data);
+        compraViewModel.agregarProductoAlUI(data);
+        compraViewModel.limpiarDetallesProducto();
+    });
+    socket.on('guardar compra', function(suplidor){
+        console.log('agregar suplidor', suplidor);
+        compraViewModel.compra().IdSuplidor = suplidor || {};
+
+        compraAPI.crear(ko.toJS(compraViewModel.compra), function(err, data){
+            console.log('compra creada', data);
+            debugger;
+        });
+    });
+
     console.log(compraViewModel);
     ko.applyBindings(compraViewModel);//, "#form-products");
 }
